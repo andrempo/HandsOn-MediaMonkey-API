@@ -1,0 +1,34 @@
+package com.handson.domain;
+
+import java.util.List;
+
+/**
+ * @author hblonski
+ * Playlist de músicas.
+ */
+public class Playlist {
+	
+	private String id;
+	
+	private List<Music> musics;
+
+	public List<Music> getMusics() {
+		return this.musics;
+	}
+
+	public void setMusics(List<Music> musics) {
+		this.musics = musics;
+	}
+	
+	public void addMusics(List<Music> musics) {
+		this.musics.addAll(musics);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+}
