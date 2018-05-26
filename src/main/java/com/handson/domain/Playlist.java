@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Playlist {
 	
+	private String id;
+	
 	private List<Music> musics;
 
 	public List<Music> getMusics() {
@@ -20,5 +22,13 @@ public class Playlist {
 	
 	public void addMusics(List<Music> musics) {
 		this.musics.addAll(musics);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

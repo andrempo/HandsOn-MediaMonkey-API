@@ -24,11 +24,14 @@ public class PlaylistService {
 	 * @return a playlist, caso encontrada, ou null caso contrário.
 	 */
 	public Playlist retrievePlaylist(String playlistId) {
-		//TODO implementar
-		return null;
+		return this.playlistRepository.findOne(playlistId);
 	}
 	
-	 public void savePlaylist(Playlist playlist) {
-		 //TODO implementar
+	 /**
+	  * Salva uma {@link Playlist}
+	 * @param playlist a playlist.
+	 */
+	public void savePlaylist(Playlist playlist) {
+		 this.playlistRepository.save(playlist);
 	 }
 }
