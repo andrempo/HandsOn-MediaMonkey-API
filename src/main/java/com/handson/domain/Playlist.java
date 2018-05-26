@@ -17,4 +17,8 @@ public class Playlist {
 	public void setMusics(List<Music> musics) {
 		this.musics = musics;
 	}
+	
+	public void addMusics(List<Music> musics) {
+		this.musics.addAll(musics);
+	}
 }

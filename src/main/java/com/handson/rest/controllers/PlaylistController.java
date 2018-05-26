@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.handson.domain.Music;
+import com.handson.domain.Playlist;
 import com.handson.service.PlaylistService;
 
 /**
- * @author hblonski
  * Playlist controller.
+ * @author hblonski
  */
 @RestController
 @RequestMapping("/playlists")
@@ -30,9 +31,19 @@ public class PlaylistController {
 	@PutMapping("/api/playlists/{playlistId}/musicas")
 	public ResponseEntity<?> addMusicsToPlaylist(@PathVariable("playlistId") String playlistId, @RequestBody List<Music> musics) {
 		try {
+			Playlist playlist = playlistService.retrievePlaylist(playlistId);
+			
+			if (playlist == null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+		                .build();
+			}
+			
+			playlist.addMusics(musics);
+			
+			playlistService.savePlaylist(playlist);
+			
 			return ResponseEntity.status(HttpStatus.OK)
-	                .contentType(MediaType.APPLICATION_JSON)
-	                .body(null);
+					.build();
 		} catch (Exception e) {
 			//Obs: Tenho o costume de usar esse logger, alterar caso seja optado por usar outro.
 			org.slf4j.LoggerFactory.getLogger(this.getClass()).error(String.format("Erro ao adicionar músicas na playlist. ID: %s", playlistId));
